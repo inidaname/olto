@@ -6,6 +6,7 @@ import firebase from "firebase";
 export const Modal = () => {
   const { modalState } = useContext(AppContext);
   const [values, setValues] = useState("");
+  const [error, setError] = useState('');
 
 
   function verifyCode(event) {
@@ -17,15 +18,13 @@ export const Modal = () => {
         values)
     }).then(function (phoneCredential) {
       return firebase.auth().signInWithCredential(phoneCredential);
-    })
+    }).catch(err => setError(err.message))
   }
-
-  console.log(modalState.modal.err)
 
   return (
     <div className="showModal">
       <form>
-        {modalState.modal.err.message}
+        {error && <p>{error}</p>}
         <div className="form-field">
           <label htmlFor="authCode">Auth Code</label>
           <input
