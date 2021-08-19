@@ -23,5 +23,16 @@ footer img {
   position: fixed;
   right: 12px;
   bottom: 12px;
-  width: 35px;
+  background-color: #FFDD2D !important;
+  width: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.chat-icon {
+  padding: 5px;
+}
+
+.cancel-icon {
+  padding: 10px;
 }

@@ -1,6 +1,10 @@
 .chat-section {
   position: fixed;
-  bottom: 0;
+  bottom: 62px;
+  right: 12px;
+  height: 234px;
+  width: 400px;
+  border: 1px solid #000;
   z-index: 4;
   font-size: 23px;
 }

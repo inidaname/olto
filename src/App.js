@@ -2,7 +2,7 @@ import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import { Chat, Header, Modal } from 'components/';
 import { Login } from 'pages/';
 import icon from 'assets/2186059.png';
-import cancel from 'assets/img_365816.png';
+import cancel from 'assets/153-1534230_town-png.png';
 
 
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -37,9 +37,8 @@ const App = () => {
           </Router>
         </main>
         <footer>
-
-        <img src={(!chats) ? icon : cancel} onClick={() => setChats(() => !chats)} alt="" />
           {chats && <Chat />}
+          <img src={(!chats) ? icon : cancel} className={(!chats) ? 'chat-icon' : 'cancel-icon'} onClick={() => setChats(() => !chats)} alt="" />
         </footer>
       </div>
     </AppContext.Provider>
