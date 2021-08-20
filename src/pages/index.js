@@ -1,2 +1,2 @@
-export * from './login/Login';
-export * from './trade/Trade';
+export { default as Login } from './login/Login';
+export { default as Trade } from './trade/Trade';

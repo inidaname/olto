@@ -6,7 +6,7 @@ import cancel from 'assets/153-1534230_town-png.png';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import './App.css';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import AppContext from 'context/store';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -23,6 +23,7 @@ const App = () => {
   const [chats, setChats] = useState(false)
 
   const [ user ] = useAuthState(auth);
+  console.log(user)
   return (
     <AppContext.Provider value={{ auth, firestore, modalState: {modal, setModal} }}>
       <div className="container">
@@ -49,4 +50,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default memo(App);

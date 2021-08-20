@@ -28,6 +28,7 @@ footer img {
   width: 45px;
   border-radius: 50%;
   cursor: pointer;
+  z-index: 5;
 }
 
 .chat-icon {

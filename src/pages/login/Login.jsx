@@ -1,10 +1,9 @@
 import AppContext from "context/store";
-import React, { useContext, useState } from "react";
+import React, { memo, useContext, useState } from "react";
 import "./login.css";
 import firebase from "firebase/app";
-import { Modal } from "components/";
 
-export const Login = () => {
+const Login = () => {
   const [input, setInput] = useState({ input: "", err: "Error" });
 
   let { modalState } = useContext(AppContext);
@@ -38,6 +37,8 @@ export const Login = () => {
       });
     }
   }
+
+  console.log('jhj')
   return (
     <form className="login">
       {input.err.message}
@@ -58,3 +59,5 @@ export const Login = () => {
     </form>
   );
 };
+
+export default memo(Login)

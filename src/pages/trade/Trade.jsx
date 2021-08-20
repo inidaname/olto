@@ -1,14 +1,18 @@
-import React from "react";
+import React, { memo, useEffect, useRef } from "react";
 import * as d3 from "d3";
 
-export const Trade = () => {
+const Trade = () => {
 
-  d3.select('.charts').append("svg").attr("width", 600)
-  .attr("height", 400)
-  .style("border", "1px solid black")
+  const ref = useRef('')
 
 
+  useEffect(() => {
+    d3.select(ref.current).append("svg").attr("width", 600)
+    .attr("height", 400)
+    .style("border", "1px solid black")
+    console.log(ref)
 
+  }, [ref])
 
   fetch("https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v3/get-historical-data?symbol=TSLA&region=US", {
     "method": "GET",
@@ -34,5 +38,8 @@ export const Trade = () => {
     console.error(err);
   });
 
-  return <div className="charts">Trades</div>;
+  return (<div ref={ref} className="charts">Trades</div>);
 };
+
+
+export default memo(Trade)
