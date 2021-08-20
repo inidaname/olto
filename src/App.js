@@ -1,9 +1,8 @@
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import { Chat, Header, Modal } from 'components/';
-import { Login } from 'pages/';
+import { Login, Trade } from 'pages/';
 import icon from 'assets/2186059.png';
 import cancel from 'assets/153-1534230_town-png.png';
-
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import './App.css';
@@ -14,6 +13,8 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 const App = () => {
+
+
 
   const auth = firebase.auth();
   const firestore = firebase.firestore();
@@ -32,6 +33,9 @@ const App = () => {
             <Switch>
               <Route exact path="/">
                 <Login />
+              </Route>
+              <Route exact path="/trades">
+                <Trade />
               </Route>
             </Switch>
           </Router>
