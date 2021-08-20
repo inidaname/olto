@@ -7,9 +7,16 @@ const Trade = () => {
 
 
   useEffect(() => {
-    d3.select(ref.current).append("svg").attr("width", 600)
+    const divContent = d3.select(ref.current).append("svg").attr("width", 600)
     .attr("height", 400)
     .style("border", "1px solid black")
+
+    divContent.selectAll("rect")
+    .data([1,2,3,4,5]).enter()
+         .append("rect")
+         .attr('width', 40)
+         .attr('height', (datapoint) => datapoint * 20)
+         .attr("fill", "orange")
     console.log(ref)
 
   }, [ref])
