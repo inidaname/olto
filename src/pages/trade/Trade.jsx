@@ -1,52 +1,70 @@
-import React, { memo, useEffect, useRef } from "react";
-import * as d3 from "d3";
+import React, { memo, useContext, useEffect, useState } from "react";
+import { useFetch, useChart } from "hooks/";
+import Chart from "react-apexcharts";
 
-const Trade = () => {
-
-  const ref = useRef('')
-
+const Trade = ({ data }) => {
+  const [chartData, setChartData] = useState([]);
+  const [options, setOptions] = useState({});
+  const [months, setMonths] = useState([]);
+  const [average, setAverage] = useState([]);
 
   useEffect(() => {
-    const divContent = d3.select(ref.current).append("svg").attr("width", 600)
-    .attr("height", 400)
-    .style("border", "1px solid black")
+    let dataseries = [];
+    let today = Date.now()
+    console.log(today)
+    if (data)
+      for (let i = 0; i < data.length; i++) {
+        const trades = data[i];
+        const open = trades.open?.toFixed(2);
+        const high = trades.high?.toFixed(2);
+        const close = trades.close?.toFixed(2)
+        const low = trades.low?.toFixed(2)
+        dataseries.push({
+          x: new Date(trades.date * 1000),
+          y: [open, high, low, close],
+        });
+      }
+    setOptions({
+      chart: {
+        type: "candlestick",
+        height: 350,
+      },
+      title: {
+        text: "CandleStick Chart",
+        align: "left",
+      },
+      xaxis: {
+        type: "datetime",
+      },
+      yaxis: {
+        tooltip: {
+          enabled: true,
+        },
+      },
+      style: {
+        colors: ['#F44336', '#E91E63', '#9C27B0']
+     }
+    });
 
-    divContent.selectAll("rect")
-    .data([1,2,3,4,5]).enter()
-         .append("rect")
-         .attr('width', 40)
-         .attr('height', (datapoint) => datapoint * 20)
-         .attr("fill", "orange")
-    console.log(ref)
+    setChartData([
+      {
+        data: dataseries,
+      },
+    ]);
 
-  }, [ref])
+    return () => {};
+  }, [data]);
 
-  fetch("https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v3/get-historical-data?symbol=TSLA&region=US", {
-    "method": "GET",
-    "headers": {
-      "x-rapidapi-host": "apidojo-yahoo-finance-v1.p.rapidapi.com",
-      "x-rapidapi-key": "E3YEmAuxF5mshIu7U5SGXncdziaWp1yvknEjsn00H5Lky4QjE7"
-    }
-  })
-  .then(res => res.json())
-  .then(response => {
-    for (let i = 0; i < response.prices.length; i++) {
-      const el = response.prices[i];
-      el.date = new Date(el.date * 1000).toUTCString()
-    }
-
-    for (let i = 0; i < response.prices.length; i++) {
-      const avarage = response.prices[i];
-      avarage.avarage = (avarage.open + avarage.close) / 2
-    }
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  });
-
-  return (<div ref={ref} className="charts">Trades</div>);
+  console.log(chartData.series);
+  return (
+    <Chart
+      options={options}
+      series={chartData}
+      type="candlestick"
+      height={350}
+      width={675}
+    />
+  );
 };
 
-
-export default memo(Trade)
+export default memo(Trade);
