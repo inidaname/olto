@@ -13,26 +13,25 @@ const useFetch = (url) => {
         method: "GET",
         headers: {
           "x-rapidapi-host": "apidojo-yahoo-finance-v1.p.rapidapi.com",
-          "x-rapidapi-key": "E3YEmAuxF5mshIu7U5SGXncdziaWp1yvknEjsn00H5Lky4QjE7",
+          "x-rapidapi-key": "30f0eb2486msh77656bcf7757205p18e1c2jsnd30947846b58",
         },
         signal: abort.signal
       }
     )
       .then((res) => {
-        if (!res.status) {
-          throw Error("Could not load data for that response");
+        console.log(res)
+        if (!res.ok) {
+          throw Error(`Could not load data for that response, message from API: ${res.statusText}`);
         }
         return res.json()
       })
       .then((response) => {
-        for (let i = 0; i < response.prices.length; i++) {
-          const el = response.prices[ i ];
-          el.daySet = new Date(el.date * 1000);
-          el.month = el.daySet.toLocaleString('en-us', { month: 'long' })
-          // el.open = el.open.toFixed(2)
-          // el.high = el.high.toFixed(2)
-          // el.close = el.close.toFixed(2)
-          // el.low = el.low.toFixed(2)
+        if(response.prices){
+          for (let i = 0; i < response.prices.length; i++) {
+            const el = response.prices[ i ];
+            el.daySet = new Date(el.date * 1000);
+            el.month = el.daySet.toLocaleString('en-us', { month: 'long' })
+          }
         }
         setIsLoading(false)
         setData(response)

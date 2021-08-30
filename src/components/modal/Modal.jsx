@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import "./modal.css";
 import firebase from "firebase";
 
-export const Modal = () => {
+const Modal = () => {
   const { modalState } = useContext(AppContext);
   const [values, setValues] = useState("");
   const [error, setError] = useState('');
@@ -40,3 +40,5 @@ export const Modal = () => {
     </div>
   );
 };
+
+export default Modal

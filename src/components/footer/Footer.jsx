@@ -4,7 +4,7 @@ import { Chat } from "components/";
 import icon from "assets/2186059.png";
 import cancel from "assets/153-1534230_town-png.png";
 
-export const Footer = () => {
+const Footer = () => {
   const [chats, setChats] = useState(false);
   return (
     <footer>
@@ -18,3 +18,5 @@ export const Footer = () => {
     </footer>
   );
 };
+
+export default Footer

@@ -1,10 +1,12 @@
 import React from 'react';
 import './chat.css';
 
-export const Chat = () => {
+const Chat = () => {
   return (
     <div className="chat-section">
       chat
     </div>
   )
 }
+
+export default Chat
