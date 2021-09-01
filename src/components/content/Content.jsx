@@ -16,8 +16,10 @@ const Content = () => {
   return (
     <div className="showModal">
       <div className="content">
-        <h1>Trading Signal for TSLA - Statistical Odds</h1>
-        <small>OLTO Trading Mentor - July 29, 2021</small>
+        <section>
+          <h1>Trading Signal for TSLA - Statistical Odds</h1>
+          <small>OLTO Trading Mentor - July 29, 2021</small>
+        </section>
         <section>
           <h2>1. Signal</h2>
           <SymbolProfile />
@@ -80,19 +82,24 @@ const Content = () => {
             case of following such signals.
           </p>
           <p>
-            <Emoji symbol="🔄" label="Refresh" /> <strong>Total number of signals</strong>: 164
+            <Emoji symbol="🔄" label="Refresh" />{" "}
+            <strong>Total number of signals</strong>: 164
           </p>
           <p>
-            <Emoji symbol="🎲" label="Refresh" /><strong> Probability of positive outcomes:</strong> 59.15%
+            <Emoji symbol="🎲" label="Refresh" />
+            <strong> Probability of positive outcomes:</strong> 59.15%
           </p>
           <p>
-            <Emoji symbol="📈" label="Linear" /><strong>Signal average profit: </strong>7.379%
+            <Emoji symbol="📈" label="Linear" />
+            <strong>Signal average profit: </strong>7.379%
           </p>
           <p>
-            <Emoji symbol="📉" label="Linear" /><strong>Signal average loss:</strong> -4.8%
+            <Emoji symbol="📉" label="Linear" />
+            <strong>Signal average loss:</strong> -4.8%
           </p>
           <p>
-            <Emoji symbol="🍏" label="Apple" /><strong> Signal average return (expectancy): </strong>2.403%
+            <Emoji symbol="🍏" label="Apple" />
+            <strong> Signal average return (expectancy): </strong>2.403%
           </p>
 
           <h3>
@@ -155,30 +162,69 @@ const Content = () => {
             profit was maximization of the average return on the signal for the
             period from 2010-07-06 to 2021-07-22.
           </p>
-          <p>For the model of setting a stop loss relative to the size of the signal candlestick pattern, we got the following result:</p>
+          <p>
+            For the model of setting a stop loss relative to the size of the
+            signal candlestick pattern, we got the following result:
+          </p>
           <Canva
-          image={tabularImage}
-          caption={`"Stop Loss and Take Profit Test" for the "Exit from a narrowing range" signal for the TSLA instrument using candlestick model size. The size of the optimal distance for placing a protective stop order and take profit from the signal generation point is determined by the maximum value (average return if the signal is executed) inside the table cell.`}
-        />
-          <p>For the model of setting a stop loss relative to the ATR value at the signal generation point, we got the following result:</p>
+            image={tabularImage}
+            caption={`"Stop Loss and Take Profit Test" for the "Exit from a narrowing range" signal for the TSLA instrument using candlestick model size. The size of the optimal distance for placing a protective stop order and take profit from the signal generation point is determined by the maximum value (average return if the signal is executed) inside the table cell.`}
+          />
+          <p>
+            For the model of setting a stop loss relative to the ATR value at
+            the signal generation point, we got the following result:
+          </p>
           <Canva
-          image={graphImage}
-          caption={`"Stop Loss and Take Profit Test" for the "Exit from a narrowing range" signal for the TSLA instrument using ATR. The size of the optimal distance for placing a protective stop order and take profit from the signal generation point is determined by the maximum value (average return if the signal is executed) inside the table cell.`}
-        />
-        <p>The tests showed that we will get the following optimal parameters</p>
-        <p><Emoji symbol="✴" label="Star" /></p>
-        <p><Emoji symbol="🍏" label="Apple" /></p>
-        <p><Emoji symbol="⛔" label="No Entry" /></p>
-        <p><Emoji symbol="✅" label="Check" /></p>
+            image={graphImage}
+            caption={`"Stop Loss and Take Profit Test" for the "Exit from a narrowing range" signal for the TSLA instrument using ATR. The size of the optimal distance for placing a protective stop order and take profit from the signal generation point is determined by the maximum value (average return if the signal is executed) inside the table cell.`}
+          />
+          <p>
+            The tests showed that we will get the following optimal parameters
+          </p>
+          <p>
+            <Emoji symbol="✴" label="Star" />{" "}
+            <strong>The best stop volume model:</strong> model size
+          </p>
+          <p>
+            <Emoji symbol="🍏" label="Apple" />{" "}
+            <strong>Average signal return: </strong> 2.519%
+          </p>
+          <p>
+            <Emoji symbol="⛔" label="No Entry" />{" "}
+            <strong> Optimal stop loss ratio:</strong> 3.0{" "}
+          </p>
+          <p>
+            <Emoji symbol="✅" label="Check" />{" "}
+            <strong>Optimal take profit ratio: </strong> 2.0
+          </p>
 
-        <h3>3.5. Same Stop and Take Profit Test</h3>
-        <p>See "Same Stop and Take Profit Test" definition here: <a href="https://medium.com/@ExtremeTrading/how-to-find-a-good-entry-point-part-2-d55f5f4a5e54" target="_blank" rel="noreferrer">Same Stop and Take Profit Test</a> </p>
-        <p>For the generated signal, we additionally carried out the "Same Stop and Take Profit Test". We have modeled the percentage of profitable trades when placing a protective stop order and take profit at the same distance from the signal generation point. For testing, we used 2 types of stop order distance from the signal generation point, multiplied by a factor from 0.5 to 3.5 with a step of 0.5: a distance equal to the size of the candlestick pattern and a distance equal to the ATR for the TSLA instrument at the moment of signal generation.</p>
+          <h3>3.5. Same Stop and Take Profit Test</h3>
+          <p>
+            See "Same Stop and Take Profit Test" definition here:{" "}
+            <a
+              href="https://medium.com/@ExtremeTrading/how-to-find-a-good-entry-point-part-2-d55f5f4a5e54"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Same Stop and Take Profit Test
+            </a>{" "}
+          </p>
+          <p>
+            For the generated signal, we additionally carried out the "Same Stop
+            and Take Profit Test". We have modeled the percentage of profitable
+            trades when placing a protective stop order and take profit at the
+            same distance from the signal generation point. For testing, we used
+            2 types of stop order distance from the signal generation point,
+            multiplied by a factor from 0.5 to 3.5 with a step of 0.5: a
+            distance equal to the size of the candlestick pattern and a distance
+            equal to the ATR for the TSLA instrument at the moment of signal
+            generation.
+          </p>
 
-        <Canva
-          image={linearGraph}
-          caption={`"Same Stop and Take Profit Test" for the "Exit from a narrowing range" signal for the TSLA instrument. The percentage of positive signal outcomes is indicated inside the cells of the table.`}
-        />
+          <Canva
+            image={linearGraph}
+            caption={`"Same Stop and Take Profit Test" for the "Exit from a narrowing range" signal for the TSLA instrument. The percentage of positive signal outcomes is indicated inside the cells of the table.`}
+          />
         </section>
       </div>
     </div>

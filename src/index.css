@@ -9,3 +9,8 @@ body {
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color: #373737;
 }
+
+a {
+  color: unset;
+  text-decoration: underline;
+}
