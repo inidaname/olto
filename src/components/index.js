@@ -5,3 +5,5 @@ export { default as Footer } from './footer/Footer';
 export { default as TradeChart } from './charts/TradeChart';
 export { default as SymbolProfile } from './symbol/SymbolProfile';
 export { default as Button } from './button/Button';
+export { default as Content } from './content/Content';
+export {default as Canva } from './canva/Canva';

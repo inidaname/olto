@@ -1,0 +1,15 @@
+.figure {
+  display: flex;
+  flex-direction: column;
+  justify-self: flex-start;
+  align-items: center;
+  width: 640px;
+  margin: 0 auto;
+}
+
+.caption {
+  font-size: 15px;
+  text-align: center;
+  color: #979696;
+  margin-top: 7px;
+}

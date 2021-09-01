@@ -15,3 +15,11 @@
   align-items: center;
   height: auto;
 }
+
+.btn-groups {
+  width: 45vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

@@ -20,11 +20,11 @@ const SymbolProfile = () => {
         <span>Name:</span> Exit from a narrow range up
       </p>
       <p>
-        <Emoji symbol="⚒️" label="Hammer" />
+        <Emoji symbol="⚒ " label="Hammer" />
         <span>Instrument:</span> Tesla (TSLA)
       </p>
       <p>
-        <Emoji symbol="✝️" label="Cross" />
+        <Emoji symbol="🎚" label="Cross" />
         <span>Timeframe:</span> D1
       </p>
       <p>

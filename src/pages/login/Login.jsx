@@ -32,13 +32,11 @@ const Login = () => {
     if (provided) {
       modalState.setModal({
         ...modalState.modal,
-        state: true,
+        state: 'auth',
         provider: new Promise(provided)
       });
     }
   }
-
-  console.log('jhj')
   return (
     <form className="login">
       {input.err.message}
