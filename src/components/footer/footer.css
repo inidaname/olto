@@ -1,0 +1,25 @@
+
+footer {
+  width: 100%;
+  padding: 12px;
+}
+
+footer .icon {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  background-color: #FFDD2D !important;
+  box-shadow: 0px 2px 4px 1px #8a959eab;
+  width: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.chat-icon {
+  padding: 5px;
+}
+
+.cancel-icon {
+  padding: 10px;
+}

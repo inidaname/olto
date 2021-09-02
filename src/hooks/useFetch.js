@@ -19,7 +19,6 @@ const useFetch = (url) => {
       }
     )
       .then((res) => {
-        console.log(res)
         if (!res.ok) {
           throw Error(`Could not load data for that response, message from API: ${res.statusText}`);
         }

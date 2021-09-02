@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import 'library/index'
 import { firebaseConfig } from 'util/firebase';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
