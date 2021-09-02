@@ -33,7 +33,7 @@ const Login = () => {
       modalState.setModal({
         ...modalState.modal,
         state: 'auth',
-        provider: new Promise(provided)
+        provider: () => new Promise(provided)
       });
     }
   }

@@ -1,6 +1,6 @@
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import { Header, Modal, Footer, Content } from 'components/';
-import { Login, Trade } from 'pages/';
+import { Login, Trade, Profile } from 'pages/';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import './App.css';
@@ -35,6 +35,9 @@ const App = () => {
               </Route>
               <Route exact path="/trades">
                 <Trade />
+              </Route>
+              <Route exact path="/profile">
+                <Profile />
               </Route>
             </Switch>
           </Router>
