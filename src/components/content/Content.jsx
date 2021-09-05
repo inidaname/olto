@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { SymbolProfile } from "components";
 import Emoji from "a11y-react-emoji";
 import "./content.css";
@@ -11,11 +11,21 @@ import tabular from "assets/df7e3e53fe4095b603710.png";
 import linearGraph from "assets/8d5b85d9e4882549b873a.png";
 import legende from "assets/d3462e83bd8b0414a66a9.png";
 import Canva from "components/canva/Canva";
+import AppContext from "context/store";
 
 const Content = () => {
+  const { modalState } = useContext(AppContext);
   return (
     <div className="showModal">
       <div className="content">
+        <span
+          className="close"
+          onClick={() =>
+            modalState.setModal({ ...modalState.modal, state: "exit" })
+          }
+        >
+          Close Modal
+        </span>
         <section>
           <h1>Trading Signal for TSLA - Statistical Odds</h1>
           <small>OLTO Trading Mentor - July 29, 2021</small>
