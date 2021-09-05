@@ -3,13 +3,14 @@ import { useFetch, useChart } from "hooks";
 import "./trade.css";
 import { TradeChart, SymbolProfile, Button } from "components";
 import AppContext from "context/store";
+import { Redirect } from "react-router-dom";
 
 const Trade = () => {
   const { err, data, isLoading } = useFetch(
     "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v3/get-historical-data?symbol=TSLA&region=US"
   );
 
-  const { modalState } = useContext(AppContext);
+  const {modalState } = useContext(AppContext);
 
   const { monthData, daysData, monthOptions, dayOptions } = useChart(
     data?.prices
@@ -20,7 +21,7 @@ const Trade = () => {
     if (action === "link") {
       window.open("https://www.etoro.com/markets/tsla", "_blank");
     }
-
+    
     if (action === "modal") {
       modalState.setModal({...modalState.modal, state: 'content' })
     }

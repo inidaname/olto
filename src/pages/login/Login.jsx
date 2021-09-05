@@ -1,17 +1,20 @@
 import AppContext from "context/store";
-import React, { memo, useContext, useState } from "react";
+import React, { memo, useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+
 import "./login.css";
 import firebase from "firebase/app";
+import { Redirect } from "react-router-dom";
 
 const Login = () => {
   const [input, setInput] = useState({ input: "", err: "Error" });
+  const history = useHistory();
 
-  let { modalState } = useContext(AppContext);
+  let { user, modalState } = useContext(AppContext);
 
   async function signIn(event) {
     event.preventDefault();
 
-    const provider = new firebase.auth.PhoneAuthProvider();
     const applicationVerifier = new firebase.auth.RecaptchaVerifier(
       "recaptcha-container",
       {
@@ -24,19 +27,26 @@ const Login = () => {
         },
       }
     );
-    const provided = await provider.verifyPhoneNumber(
+    new firebase.auth().signInWithPhoneNumber(
       input.input,
       applicationVerifier
-    ).catch(err => setInput({...input, err: err}))
-    
-    if (provided) {
-      modalState.setModal({
-        ...modalState.modal,
-        state: 'auth',
-        provider: () => new Promise(provided)
-      });
-    }
+    ).then((confirmationResult) => {
+        console.log(confirmationResult);
+        return modalState.setModal({
+          ...modalState.modal,
+          state: "auth",
+          provider: confirmationResult,
+        });
+      })
+      .catch((err) => setInput({ ...input, err: err }));
+
   }
+
+  useEffect(() => {
+    if (modalState.modal.state === "loggedIn") {
+      history.push("/trades");
+    }
+  }, [modalState.modal.state])
   return (
     <form className="login">
       {input.err.message}
@@ -52,10 +62,10 @@ const Login = () => {
           id="phoneNumber"
         />
       </div>
-      <button onClick={signIn}>Sign In</button>
+      <button className="btn" onClick={signIn}>Sign In</button>
       <div id="recaptcha-container"></div>
     </form>
   );
 };
 
-export default memo(Login)
+export default memo(Login);

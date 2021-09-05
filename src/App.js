@@ -1,4 +1,4 @@
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Switch, Route, BrowserRouter as Router, Redirect } from 'react-router-dom';
 import { Header, Modal, Footer, Content } from 'components/';
 import { Login, Trade, Profile } from 'pages/';
 
@@ -9,10 +9,10 @@ import AppContext from 'context/store';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+import { GuardedRoute } from 'components';
 
 const App = () => {
-
-
+  // firebase.auth().settings.appVerificationDisabledForTesting = true;
 
   const auth = firebase.auth();
   const firestore = firebase.firestore();
@@ -20,28 +20,22 @@ const App = () => {
   const [ modal, setModal ] = useState({ state: '', provider: () => new Promise(), err: '' })
 
   const [ user ] = useAuthState(auth);
-  console.log(user)
+
   return (
-    <AppContext.Provider value={{ auth, firestore, modalState: { modal, setModal }}}>
+    <AppContext.Provider value={{ user, auth, firestore, modalState: { modal, setModal } }}>
       <div className="container">
-        {modal.state === 'auth'  && <Modal />}
-        {modal.state === 'content'  && <Content />}
-        <Header />
-        <main>
-          <Router>
+        {modal.state === 'auth' && <Modal />}
+        {modal.state === 'content' && <Content />}
+        <Router>
+          <Header />
+          <main>
             <Switch>
-              <Route exact path="/">
-                <Login />
-              </Route>
-              <Route exact path="/trades">
-                <Trade />
-              </Route>
-              <Route exact path="/profile">
-                <Profile />
-              </Route>
+              <Route exact path="/" render={()=> !user ? <Login /> : <Redirect to='/trades' />} />
+              <GuardedRoute path='/trades' component={Trade} />
+              <GuardedRoute path='/profile' component={Profile} />
             </Switch>
-          </Router>
-        </main>
+          </main>
+        </Router>
         <Footer />
       </div>
     </AppContext.Provider>

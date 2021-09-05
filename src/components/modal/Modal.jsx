@@ -6,19 +6,22 @@ import firebase from "firebase";
 const Modal = () => {
   const { modalState } = useContext(AppContext);
   const [values, setValues] = useState("");
-  const [error, setError] = useState('');
-
+  const [error, setError] = useState("");
 
   function verifyCode(event) {
     event.preventDefault();
-    modalState.modal.provider.then(verificationId => {
-      console.log(verificationId)
-      return firebase.auth.PhoneAuthProvider.credential(
-        verificationId,
-        values)
-    }).then(function (phoneCredential) {
-      return firebase.auth().signInWithCredential(phoneCredential);
-    }).catch(err => setError(err.message))
+    modalState.modal.provider
+      .confirm(values)
+      .then((verificationId) => {
+        if (verificationId) {
+          modalState.setModal({
+            ...modalState.modal,
+            state: "loggedIn",
+          });
+          firebase.auth().signInWithCredential(verificationId);
+        }
+      })
+      .catch((err) => setError(err.message));
   }
 
   return (
@@ -35,10 +38,10 @@ const Modal = () => {
             id="authCode"
           />
         </div>
-        <button onClick={(event) => verifyCode(event)}>Auth</button>
+        <button className="btn" onClick={(event) => verifyCode(event)}>Auth</button>
       </form>
     </div>
   );
 };
 
-export default Modal
+export default Modal;
