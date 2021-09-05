@@ -3,7 +3,6 @@ import { useFetch, useChart } from "hooks";
 import "./trade.css";
 import { TradeChart, SymbolProfile, Button } from "components";
 import AppContext from "context/store";
-import { Redirect } from "react-router-dom";
 
 const Trade = () => {
   const { err, data, isLoading } = useFetch(

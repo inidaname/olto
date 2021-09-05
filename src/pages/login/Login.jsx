@@ -4,13 +4,12 @@ import { useHistory } from "react-router-dom";
 
 import "./login.css";
 import firebase from "firebase/app";
-import { Redirect } from "react-router-dom";
 
 const Login = () => {
   const [input, setInput] = useState({ input: "", err: "Error" });
   const history = useHistory();
 
-  let { user, modalState } = useContext(AppContext);
+  let { modalState } = useContext(AppContext);
 
   async function signIn(event) {
     event.preventDefault();

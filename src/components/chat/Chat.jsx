@@ -8,7 +8,7 @@ import ChatMessage from "./ChatMessage";
 const Chat = () => {
   const [chatOpen, setChatOpen] = useState(false);
   const [chatSender, setChatSender] = useState({ image: "", name: "" });
-  const { data, error, isLoading } = useFetch(
+  const { data } = useFetch(
     "https://randomuser.me/api/?results=4"
   );
 
