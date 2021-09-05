@@ -9,3 +9,7 @@ header {
   width: 95%;
   margin: 0 auto;
 }
+
+header span {
+  cursor: pointer;
+}
